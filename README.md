@@ -1,18 +1,19 @@
 This is the Custom payment gateway module for Magento store using 4pay Api. It is the Merchant’s integration procedure that provides
---Full Api Gateway
--- Payment gateway supports--Verifies by VISA / Master Card Secure Code
+
+- Full Api Gateway.
+- Payment gateway supports--Verifies by VISA / Master Card Secure Code.
 
 
 Feature Set
 ---------------
 
---Full functionality for sales and refunds through the website front end and back end
---Used API Credentials for the merchant account
---Manage and modify the merchant account configuration from the Admin backend 
---Provides the Functionality same as the stock Authorize.net module that comes with Magento
---Credit card payment on the website, and configuration
---Setup payments from the backend 
---Manage Refund from the admin backend
+- Full functionality for sales and refunds through the website front end and back end.
+- Used API Credentials for the merchant account.
+- Manage and modify the merchant account configuration from the Admin backend. 
+- Provides the Functionality same as the stock Authorize.net module that comes with Magento.
+- Credit card payment on the website, and configuration.
+- Setup payments from the backend. 
+- Manage Refund from the admin backend.
 
 Installation
 --------------
