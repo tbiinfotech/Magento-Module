@@ -1,0 +1,43 @@
+<?php
+die('admincvv');
+$showhtml = Mage::getSingleton('core/session')->getCvvData();
+
+$xml_response=simplexml_load_string($_REQUEST['xml']);
+
+if(isset($showhtml))
+{
+	Mage::getSingleton('core/session')->unsCvvData();
+	echo "Redirecting to 4Pay. PLease do not refresh....".$showhtml;
+}
+else if(isset($xml_response))
+{
+	if($xml_response->response->response_code==0)
+	{
+		unset($_REQUEST['xml']);
+		
+		$payment = new Varien_Object();
+		$payment->setTransactionId($xml_response->response->transaction_id);
+		$payment->setAuthCode($xml_response->response->authcode);
+		$payment->setTransType($xml_response->response->transaction_type);
+		$amount = ($xml_response->response->amount/100);
+	
+		$this->getRequest()->setparam('super_attribute', null);
+		Mage::app()->getResponse()->setRedirect(Mage::getUrl('pay/index/createOrder', array('_success'=>true)));
+	}
+	else
+	{
+		unset($_REQUEST['xml']);
+		Mage::getSingleton('core/session')->setErrorCheckout('decline');
+		//Mage::getSingleton('core/session')->addError('Please confirm payment details and try again later.');
+		//session_write_close();
+		//Mage::app()->getResponse()->setRedirect(Mage::getUrl('checkout/onepage/index', array('_secure'=>true)));
+		Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::getUrl('checkout/onepage/index'));
+		
+	}
+}
+else
+{
+	Mage::app()->getResponse()->setRedirect(Mage::getUrl('checkout/onepage/index', array('_secure'=>true)));
+}
+
+?>

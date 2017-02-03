@@ -1,0 +1,6 @@
+<?php $_order = $this->getOrder() ?>
+
+<?php if(Mage::helper('pay')->canCancel($_order)): ?>
+        <span class="separator">|</span>
+        <a href="<?php echo $this->getUrl('pay/index/cancel', array('order_id' => $_order->getId(), '_secure'=>true)) ?>" class="link-reorder"><?php echo $this->__('Cancel Order') ?></a>
+<?php endif ?>
